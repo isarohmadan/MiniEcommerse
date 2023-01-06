@@ -1,0 +1,40 @@
+@font-face {
+    font-family: 'Montserrat';
+    src: url('webfont.eot'); /* IE9 Compat Modes */
+    src: url('/font/Montserrat/Montserrat-Italic-VariableFont_wght.ttf')  format('truetype'), /* Safari, Android, iOS */
+         url('/font/Montserrat/Montserrat-VariableFont_wght.ttf')  format('truetype') /* Safari, Android, iOS */
+  }
+@font-face {
+    font-family: 'Montserrat-extra-bold';
+    src: url('/font/Montserrat/static/Montserrat-ExtraBold.ttf');
+}
+
+body{
+    background-color:#F7F5EB;
+    font-family: Montserrat;
+}
+nav{
+    background-color:#F7F5EB;
+}
+.container-fluid {
+   max-width:1170px;
+}
+.jumbotron-fluid{
+    max-width: 1170px;
+    margin: auto;
+}
+.jumbotron{
+    background-color: #EAE0DA;
+}
+.bi-alipay{
+filter: invert(82%) sepia(37%) saturate(201%) hue-rotate(154deg) brightness(87%) contrast(88%);
+}
+a span {
+    color : #A0C3D2    
+}
+.navbar-brand span,#display-jumbo{
+    font-family: Montserrat-extra-bold; 
+}
+.nav-link a:hover {
+    color: #A0C3D2;
+}
