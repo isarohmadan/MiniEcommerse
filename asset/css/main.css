@@ -9,6 +9,11 @@
     src: url('/font/Montserrat/static/Montserrat-ExtraBold.ttf');
 }
 
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
 body{
     background-color:#F7F5EB;
     font-family: Montserrat;
@@ -19,22 +24,74 @@ nav{
 .container-fluid {
    max-width:1170px;
 }
+
+.nav-item a{
+    animation: ease-in 0.2s;
+}
+.bi-alipay{
+filter: invert(82%) sepia(37%) saturate(201%) hue-rotate(154deg) brightness(87%) contrast(88%);
+}
+.nav-item a:hover {
+    font-weight: bold;    
+}
+.navbar-brand span,#display-jumbo{
+    font-family: Montserrat-extra-bold; 
+}
 .jumbotron-fluid{
     max-width: 1170px;
     margin: auto;
 }
 .jumbotron{
-    background-color: #EAE0DA;
+    background-color:#F7F5EB;
+    border-radius: 8px;
+    min-height: 400px;
+    position: relative;
 }
-.bi-alipay{
-filter: invert(82%) sepia(37%) saturate(201%) hue-rotate(154deg) brightness(87%) contrast(88%);
+
+.typing h1 {
+    color : #A0C3D2;
+    padding: 0;
+    margin: 0;
 }
-a span {
-    color : #A0C3D2    
+.jumbotron .content{
+    max-width: 100%;
+    border: 1px solid black;
 }
-.navbar-brand span,#display-jumbo{
-    font-family: Montserrat-extra-bold; 
+.jumbotron .content .typing h1{
+    font-size: 4vw;
+    max-width: 50%;
 }
-.nav-link a:hover {
-    color: #A0C3D2;
+.jumbotron .content p {
+    font-size: 1vw;
+    max-width: 60%;
+}
+.icon-jumbo{
+    display: inline-block;
+    box-sizing: border-box;
+    border: 1px solid black;
+}
+.icon-jumbo svg{
+    border: 1px solid black;
+    max-height: 15vw;
+    position: absolute;
+    margin-top: 5vh;
+    right: 0;
+    top: 0;
+    z-index: 0;
+}
+.icon-jumbo img{
+    position: absolute;
+    max-height: 100%;
+    right: 40px;
+    top: 0;
+}
+@media only screen and (max-width: 992px) {
+    .jumbotron{
+        min-height: 350px;
+    }
+}
+@media only screen and (max-width: 768px) {
+    .jumbotron{
+        min-height: 250px;
+    }
 }

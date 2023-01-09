@@ -17,7 +17,16 @@ app.get('/',(req,res)=>{
         title : "Halaman Home"
     })
 })
-
+app.get('/Produk',(req,res)=>{
+    res.render('produk',{
+        title : 'Halaman Produk'
+    })
+})
+app.get('/Pembelian',(req,res)=>{
+    res.render('pembelian',{
+        title : 'Halaman Pembelian'
+    })
+})
 
 app.listen('9000',(err)=>{
     if(err)
