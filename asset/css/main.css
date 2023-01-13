@@ -20,6 +20,7 @@
 }
 body{
     font-family: Montserrat;
+    background-color: #F7F5EB;
 }
 nav{
     background-color:transparent;
@@ -135,6 +136,38 @@ filter: invert(82%) sepia(37%) saturate(201%) hue-rotate(154deg) brightness(87%)
     background-color: white;
 }
 
+/* quotes */
+
+#company-purpose{
+    width: 100%;
+    height: 350px;
+    background-color: #EAE0DA;
+    position: relative;
+}
+#company-purpose .blockquote{
+    text-align: center;
+    font-size: 45px;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+#company-purpose .blockquote p:first-child{
+    text-shadow: 0.5px 0.5px 2px grey;
+}
+#company-purpose .blockquote p:first-child::before{
+    content: '" ';
+}
+#company-purpose .blockquote p:first-child::after{
+    content: ' "';
+}
+#company-purpose .blockquote p:last-child{
+    font-size: 15px;
+    text-align: center;
+    font-family: Montserrat-regular;
+}
+/* end quotes */
+
 
 /* media query */
 
@@ -158,4 +191,12 @@ filter: invert(82%) sepia(37%) saturate(201%) hue-rotate(154deg) brightness(87%)
     .jumbotron{
         height: 520px;
     }
+    #company-purpose{
+        height: 200px;
+    }
+    #company-purpose .blockquote{
+        font-size: 25px;
+    }
+    #company-purpose .blockquote p:last-child{
+        font-size: 10px;}
   }
