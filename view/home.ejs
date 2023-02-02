@@ -1,4 +1,4 @@
-<%- include('./partials/header',{judul:"E-commerse isa"}); %>
+<%- include('./partials/header',{judul:"E-commerse isa",style:css}); %>
 <body>
   <%- include('./partials/navbar.ejs'); %>
   <!-- Jumbotron/hero img -->
@@ -11,22 +11,73 @@
   <!-- end Jumbotron/hero img -->
 
   <!-- What are we do -->
-    <div id="company-purpose" class="mt-5">
-      <blockquote class="blockquote text-dark text-capitalize">
+    <div id="company-purpose">
+      <blockquote class="blockquote text-light text-capitalize">
         <p class="mb-0">Sensuality is an expression <br> of modern luxury</p>
         <p class="blockquote-footer">Lebo Grand</p>
       </blockquote>
-      
     </div>
   <!-- end WAWD -->
 
-  
-  <!-- Best Seller -->
 
+  <!-- Best Seller -->
+    <div id="best-seller" class=" container-fluid mb-3">
+      <div class="row col-12">
+        <h1 id="typo-best" class="best-typo">LUXXY</h1>
+        <div class="picture1 images col-6"><span></span></div>
+        <div class="picture2 images col-6"><span></span></div>
+      </div>
+    </div>
   <!-- End Best Seller -->
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
+  <div id="top-product" class="mt-5 cards container-fluid">
+    <h2>Top <span class="font-weight-bold">Product</span></h2>
+    <br>
+    <a href="#">More Product</a>
+    <div id="top-product-cards" class="cards col-12 clearfix">
+      <div class="card" style="width: 15rem;">
+        <div class="head-pict">
+            <!-- <img class="card-img-top" src="/images/lib.jpg" alt="Card image cap"> -->
+        </div>
+        <div class="card-body">
+          <h6 class="text-center text-light">Judul</h6>
+          <p class="text-light">Lorem ipsum amet consectetur adipisicing elit. Amet, at.</p>
+          <button class="btn butt-btn">BUY</button>
+        </div>
+      </div>
+      <div class="card" style="width: 15rem;">
+        <div class="head-pict">
+            <!-- <img class="card-img-top" src="/images/lib.jpg" alt="Card image cap"> -->
+        </div>
+        <div class="card-body">
+          <h6 class="text-center text-light">Judul</h6>
+          <p class="text-light">Lorem ipsum amet consectetur adipisicing elit. Amet, at.</p>
+          <button class="btn butt-btn">BUY</button>
+        </div>
+      </div>
+      <div class="card" style="width: 15rem;">
+        <div class="head-pict">
+            <!-- <img class="card-img-top" src="/images/lib.jpg" alt="Card image cap"> -->
+        </div>
+        <div class="card-body">
+          <h6 class="text-center text-light">Judul</h6>
+          <p class="text-light">Lorem ipsum amet consectetur adipisicing elit. Amet, at.</p>
+          <button class="btn butt-btn">BUY</button>
+        </div>
+      </div>
+      <div class="card" style="width: 15rem;">
+        <div class="head-pict">
+            <!-- <img class="card-img-top" src="/images/lib.jpg" alt="Card image cap"> -->
+        </div>
+        <div class="card-body">
+          <h6 class="text-center text-light">Judul</h6>
+          <p class="text-light">Lorem ipsum amet consectetur adipisicing elit. Amet, at.</p>
+          <button class="btn butt-btn">BUY</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
+
+
 </html>

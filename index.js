@@ -14,7 +14,8 @@ app.use(express.static(path.join(__dirname,'asset')))
 
 app.get('/',(req,res)=>{
     res.render('home',{
-        title : "Halaman Home"
+        title : "Halaman Home",
+        css : "main"
     })
 })
 app.get('/Produk',(req,res)=>{
