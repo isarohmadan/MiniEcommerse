@@ -1,98 +1,22 @@
-@font-face {
-    font-family: 'Montserrat';
-    src: url('webfont.eot'); /* IE9 Compat Modes */
-    src: url('/font/Montserrat/Montserrat-Italic-VariableFont_wght.ttf')  format('truetype'), /* Safari, Android, iOS */
-         url('/font/Montserrat/Montserrat-VariableFont_wght.ttf')  format('truetype') /* Safari, Android, iOS */
-  }
-@font-face {
-    font-family: 'Montserrat-extra-bold';
-    src: url('/font/Montserrat/static/Montserrat-ExtraBold.ttf');
-}
-@font-face {
-    font-family: 'Montserrat-regular';
-    src: url('../font/Montserrat/static/Montserrat-SemiBold.ttf');
-}
-@font-face {
-    font-family: 'Antonio';
-    src: url('../font/Antonio/Antonio-VariableFont_wght.ttf') format('truetype');
-}
+
 
 *{
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    scroll-behavior: smooth;
 }
 body{
     font-family: Montserrat;
     background-color: #000000;
 }
-nav{
-    background-color:transparent;
+.line-space{
+    width: 100%;
+    border-bottom: 1px solid white;
+    margin-bottom: 50px;
+    margin-top: 50px;
+    z-index: 0 !important;
 }
-.container-fluid {
-   max-width:1170px;
-}
- /* Color of the links BEFORE scroll */
- .navbar-before-scroll .nav-link,
- .navbar-before-scroll .navbar-toggler-icon {
-   color: rgb(235, 0, 0);
- }
-
- /* Color of the links AFTER scroll */
- .navbar-after-scroll .nav-link,
- .navbar-after-scroll .navbar-toggler-icon {
-   color: #4f4f4f;
- }
- /* Color of the navbar AFTER scroll */
- .navbar-after-scroll {
-   background-color: rgb(0, 0, 0,0.8);
- }
-
-  /* Transition after scrolling */
-  .navbar-after-scroll {
-    transition: 0.5s ease-in-out, padding 0.5s ease-in-out;
-  }
-
-  /* Transition to the initial state */
-  .navbar-before-scroll {
-    transition: 0.5s ease-in-out, padding 0.5s ease-in-out;
-  }
-
-.bi-alipay{
-    fill: white;
-}
-.nav-item:hover {
-    font-weight: 800;
-}
-.navbar-brand svg{
-    fill:white;
-}
-.navbar-brand{
-    transition: filter 0.5s ease;
-}
-.navbar-brand:hover{
-    filter: invert(27%) sepia(51%) saturate(2878%) hue-rotate(346deg) brightness(104%) contrast(97%);
-
-}
-.nav-item::after{
-    content: "";
-    display: block;
-    width: 50%;
-    margin: auto;
-    border-bottom: 3px solid #A0C3D2;
-    padding-top: 5px;
-    margin-top: -8px;
-    transform: scaleX(0);
-    transition: 150ms ease-in-out;
-}
-.nav-item:hover::after{
-    transform: scaleX(1);
-}
-
-.navbar-brand span,#display-jumbo{
-    font-family: Montserrat-extra-bold; 
-}
-
 /* Jumbotron*/
 .jumbotron{
     background-image: url('../images/laura-chouette-CtOA9wbFAdQ-unsplash.jpg');
@@ -244,6 +168,43 @@ nav{
     position: relative;
 
 }
+#top-product .icon-scroll{
+    display:inline-block;
+    position: absolute;
+    height: 30px;
+    top: 35px;
+    right: 0;
+    padding: 0;
+    cursor: pointer;
+}
+#top-product .icon-scroll .scroll-left{
+    background: url('../icons/caret-left-fill.svg');
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    margin: 0;
+    background-size: cover;
+   
+    -webkit-filter: grayscale(1) invert(1);
+    filter: grayscale(1) invert(1);
+    transition: 0.5s ease-in;
+
+}
+#top-product .icon-scroll .scroll-left:hover{
+ filter: invert(27%) sepia(51%) saturate(2878%) hue-rotate(346deg) brightness(104%) contrast(97%);
+}
+#top-product .icon-scroll .scroll-right{
+    background:url('../icons/caret-right-fill.svg');
+    -webkit-filter: grayscale(1) invert(1);
+    filter: grayscale(1) invert(1);
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    background-size: cover;
+}
+#top-product .icon-scroll .scroll-right:hover{
+ filter: invert(27%) sepia(51%) saturate(2878%) hue-rotate(346deg) brightness(104%) contrast(97%);
+}
 #top-product h2 {
     color: white;
     font-weight:light;
@@ -267,11 +228,17 @@ color: #EAC7C7;
 }
 
 #top-product-cards { 
-    height: 100%;
+    max-height: 480px;
+    display: flex;
+    overflow-x: auto;
     padding:10px 10px 10px 0px;
+}
+#top-product-cards::-webkit-scrollbar{
+    width: 0;
 }
 #top-product-cards .card {
     float: left;
+    min-width: 15rem;
     display: inline-block;
     margin: 10px 10px 10px 0px;
     background-color: #111111;
@@ -312,20 +279,89 @@ color: #EAC7C7;
 /* End top product  */
 
 
+/* ABOUT US */
+#About_us {
+    margin-top: 100px;
+    width: 100%;
+    position: relative;
+    margin: auto;
+    height: 600px;
+    padding: 0px 60px 60px 60px;
+}
+#About_us >.content {
+    position: relative;
+}
+#About_us >.content > .pict{
+    display: inline-block;
+    width: 50%;
+    position: absolute;
+    z-index: 2;
+    height: 600px;
+}
+#About_us >.content > .letter-about-us {
+    position: absolute;
+    width: 70%;
+    height: 100%;
+    
+    top: 0;
+    right: 0;
+    padding: 0;
+    float: right;
+}
+#About_us >.content > .letter-about-us h2{
+    color: white;
+    margin-top: 20px;
+    width: 100%;
+    z-index: 10;
+    font-family: Montserrat-regular;
+    margin-right: 10px;
+}
+#About_us >.content > .pict {
+    background: url('../images/t.png');
+    background-size: contain;
+    position: relative;
+    padding-top: 0;
+    background-repeat: no-repeat;
+    border-radius:400px;
+    background-position:center ;
+    -webkit-filter: grayscale(80%); /* Safari 6.0 - 9.0 */
+    filter: grayscale(80%);
+    transition:  0.6s ease filter;
+    top: 0;
+
+
+}
+#About_us > .content > .colored { 
+    filter: grayscale(0%);
+}
+#About_us > .content > .beforecolored { 
+    filter: grayscale(80%);
+}
+#About_us::after{
+    content: "";
+    display: block;
+    position: absolute;
+    width: 100%;
+    min-height: 100%;
+    opacity: var(--afterBack,1);
+    bottom: 0;
+    z-index: 2;
+    transition: 0.5 ease;
+    height: 10px;
+    background-image: linear-gradient(to top, rgba(0,0,0,1), rgba(0,0,0,0));
+}
+
+/* END ABOUT US */
+
 /* media query */
 
+@media (max-width:375px){
+    #top-product{
+        max-width:275px;
+    }
+}
 
-@media (max-width: 600px) {
-    .navbar{
-        background-color: black;
-    }
-    .navbar-toggler-icon {
-        filter: grayscale(1) invert(1);
-    }
-    .nav-item::after{
-        content: "";
-        border: none;
-    }
+@media (max-width: 600px) and (min-width:376px) {
     .jumbotron h1{
         font-size: 35px;
         margin-bottom: 40px;
@@ -352,10 +388,16 @@ color: #EAC7C7;
         line-height: 400px;
         font-size: 120px;
     }
+    #top-product{
+        max-width:500px;
+    }
   }
   @media (max-width: 800px)and (min-width: 600px)  {
     #best-seller .best-typo{
         font-size: 220px;
+    }
+    #top-product{
+        max-width:700px;
     }
     
 }
@@ -364,3 +406,4 @@ color: #EAC7C7;
     display:block;
     clear:both;
    }
+

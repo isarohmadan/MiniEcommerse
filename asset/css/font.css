@@ -1,0 +1,22 @@
+@font-face {
+    font-family: 'Montserrat';
+    src: url('webfont.eot'); /* IE9 Compat Modes */
+    src: url('/font/Montserrat/Montserrat-Italic-VariableFont_wght.ttf')  format('truetype'), /* Safari, Android, iOS */
+         url('/font/Montserrat/Montserrat-VariableFont_wght.ttf')  format('truetype') /* Safari, Android, iOS */
+  }
+@font-face {
+    font-family: 'Montserrat-extra-bold';
+    src: url('/font/Montserrat/static/Montserrat-ExtraBold.ttf');
+}
+@font-face {
+    font-family: 'Montserrat-regular';
+    src: url('../font/Montserrat/static/Montserrat-SemiBold.ttf');
+}
+@font-face {
+    font-family: 'Antonio';
+    src: url('../font/Antonio/Antonio-VariableFont_wght.ttf') format('truetype');
+}
+
+.montserrat-bold{
+    font-family: Montserrat-extra-bold;
+}

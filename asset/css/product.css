@@ -1,0 +1,160 @@
+body{
+    font-family: Montserrat;
+    background-color: black;
+}
+*{
+}
+.row{
+    height: 500px;
+    padding: 0;
+}
+.col-md-8{
+    height: inherit;
+}
+.main-pict-product{
+    background: url('../images/laura-chouette-CtOA9wbFAdQ-unsplash.jpg');
+    background-size:cover;
+    background-repeat: no-repeat;
+    min-height: 100%;
+    background-position: center;
+    padding: 0;
+    border-radius: 30px;
+}
+.jumbo2{
+    height: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+
+.content-1{
+    height: 60%;
+    margin: 0;
+    color: white;
+    font-family: Montserrat-extra-bold;
+}
+
+.jumbo2 .content-1 .box-content-1 
+, .box-content-2 , .box-content-3
+{
+    height: 100%;
+    position: relative;
+    padding: 0;
+    border-radius: 30px;
+    background-color: #A0C3D2;
+}
+.box-content-1 h2 {
+    display: inline-block;
+    margin: 30px 20px;
+}
+.box-content-1 p {
+    position: absolute;
+    font-family: Montserrat-regular;
+    max-width: 80%;
+    margin: 20px 20px;
+    font-size: 0.7rem;
+    bottom: 0;
+}
+.jumbo2 >.content-2 , .jumbo2 >.content-3{
+    height: 40%;
+}
+
+.jumbo2 >.content-2 >.box-content-2 , .jumbo2 >.content-3 >.box-content-3{
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.box-content-3{
+    background: url('../images/irene-kredenets-tcVH_BwHtrc-unsplash.jpg');
+}
+.box-content-2{
+    background: url('../images/pict2.jpg');
+}
+
+#product-content {
+    width: 100%;
+    height:max-content; 
+}
+.body-product{
+    height: auto;
+    padding: 0;
+}
+.badges{
+    font-family:Montserrat-extra-bold;
+    height: fit-content;
+}
+.badges .badge {
+    margin: 5px;
+    text-decoration: none;
+    border: none;
+    transition: ease 0.30s;
+    padding: 5px;
+}
+.badges .badge:hover{
+    box-shadow: 2px 2px 10px #A0C3D2 ;
+}
+.header {
+    margin: 5px;
+    padding: 0;
+    height: fit-content;
+}
+.head{
+    margin: 10px 15px;
+    text-transform: capitalize;
+}
+
+.product {
+    height: fit-content;
+    display: inline-block;
+    padding: 0;
+}
+.rowDisplay{
+    width: 100%;
+    height: 100%;
+    margin: 0;
+}
+.product .card {
+    border-radius: 10px;
+    border: none;
+    margin: 10px;
+}
+.product .card .pict {
+    max-width:100%;
+    height: 400px;
+    background-color: white;
+    overflow: hidden;
+    margin: auto;
+    z-index: 2;
+    border-radius: 10px;
+    display: inline;
+}
+.card .card-text{
+    font-size: 0.7rem;
+}
+.color-pallete {
+    padding: 0;
+    margin: 0;
+}
+.border-pallete{
+    display: inline-block;
+    line-height: 20px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: yellow;
+    margin:0;
+    cursor: pointer;
+}
+.color1{
+    background-color: #8cddff;
+}
+.color2{
+    background-color: #da5252;
+}
+.color3{
+    background-color: #fdba3e;
+}
+
+.price{
+    color: #414141;
+}

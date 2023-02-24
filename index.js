@@ -20,12 +20,14 @@ app.get('/',(req,res)=>{
 })
 app.get('/Produk',(req,res)=>{
     res.render('produk',{
-        title : 'Halaman Produk'
+        title : 'Halaman Produk',
+        css : "main"
     })
 })
 app.get('/Pembelian',(req,res)=>{
     res.render('pembelian',{
-        title : 'Halaman Pembelian'
+        title : 'Halaman Pembelian',
+        css : "main"
     })
 })
 
@@ -35,6 +37,7 @@ app.listen('9000',(err)=>{
     console.log("koneksi berhasil di port 9000");
 
 })
+
 // yargs.command({
 //     command : 'add',
 //     describe : 'Menambahkan contact baru',
