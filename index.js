@@ -4,39 +4,89 @@
 // const { simpanContact,listContacts,detailContact,deleteContact } = require('./contact');
 const bodyParser = require('body-parser');
 const express = require('express');
+const {notFound,errorHandler} = require('./middlewares/errorHandler')
 const path = require('path');
+const authRoute = require('./routes/authRoute');
+const dbConnect = require('./config/dbConnect') 
+const dotenv = require('dotenv').config();
+const cookieParser = require('cookie-parser');
+const PORT = process.env.PORT || 3000;
+dbConnect();
+
 
 const app = express();
+app.use(cookieParser());
+app.use(bodyParser.json())
 app.set(bodyParser.urlencoded({extended:true}))
 app.set('view engine','ejs')
 app.set('views','view')
 app.use(express.static(path.join(__dirname,'asset')))
 
+
+app.use('/api/user',authRoute)
 app.get('/',(req,res)=>{
     res.render('home',{
         title : "Halaman Home",
         css : "main"
     })
 })
-app.get('/Produk',(req,res)=>{
-    res.render('produk',{
-        title : 'Halaman Produk',
-        css : "main"
-    })
-})
-app.get('/Pembelian',(req,res)=>{
-    res.render('pembelian',{
-        title : 'Halaman Pembelian',
-        css : "main"
-    })
-})
+// app.get('/Produk',(req,res)=>{
+//     res.render('produk',{
+//         title : 'Halaman Produk',
+//         css : "main"
+//     })
+// })
+// app.get('/Pembelian',(req,res)=>{
+//     res.render('pembelian',{
+//         title : 'Halaman Pembelian',
+//         css : "main"
+//     })
+// })
+app.use(notFound)
+app.use(errorHandler)
 
-app.listen('9000',(err)=>{
+app.listen(PORT,(err)=>{
     if(err)
         throw err
-    console.log("koneksi berhasil di port 9000");
+    console.log(`koneksi berhasil di port ${PORT}`);
 
 })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // yargs.command({
 //     command : 'add',

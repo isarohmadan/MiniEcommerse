@@ -1,6 +1,8 @@
 body{
     font-family: Montserrat;
     background-color: black;
+    scroll-behavior: smooth;
+    transition: ease 0.6s;
 }
 *{
 }
@@ -88,7 +90,7 @@ body{
     text-decoration: none;
     border: none;
     transition: ease 0.30s;
-    padding: 5px;
+    padding: 12px 20px 8px;
 }
 .badges .badge:hover{
     box-shadow: 2px 2px 10px #A0C3D2 ;
@@ -100,9 +102,11 @@ body{
 }
 .head{
     margin: 10px 15px;
-    text-transform: capitalize;
+    text-transform: uppercase;
+    font-size: 3rem;
+    color: #f77070;
+    text-shadow: white;
 }
-
 .product {
     height: fit-content;
     display: inline-block;
@@ -157,4 +161,193 @@ body{
 
 .price{
     color: #414141;
+}
+
+.button-product{
+    padding: 5px 12px;
+    margin-top: 10px;
+    cursor: pointer;
+    transition: ease-in 0.5;
+    background-color: #f77070;
+    color: white;
+}
+.button-product:hover{
+    color: black;
+}
+.product-content-all{
+    transition: ease 0.5s;
+}
+
+.overflow{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    color: white;
+}
+.overflow{
+    transition: ease 2s;
+    opacity: 0;
+    z-index: 6;
+    background-color: #414141;
+}
+.content-modal{
+    position: absolute;
+    height: 60%;
+    top: 50%;
+    left: 50%;
+    visibility: hidden;
+    opacity: 0;
+    transition: ease 2s;
+    transform: translate(-50%,-50%);
+    border-radius: 10px;
+    overflow: hidden;
+    padding: 0;
+    z-index: 9 !important;
+}
+.image-content-left{
+    max-height: 100%;
+    padding: 0;
+    position: relative;
+    z-index: 4;
+    overflow: hidden;
+}
+.image-content-left img{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    z-index: -1;
+    max-width:100%; 
+    margin: auto;
+}
+.right-content-overflow{
+    background-color: white;
+    color: black;
+}
+
+.right-content-overflow .body-overflow p{
+    font-size: 10px;
+    max-width: 70%;
+    color: #535353;
+    font-family: Montserrat-regular;
+    margin: auto;
+}
+.right-content-overflow .card .card-body{
+    margin: 0;
+    color: #535353;
+}
+.right-content-overflow .card .content-card .pricing{
+    text-align: left;
+    width: 100%;
+    color: #535353;
+    margin: auto;
+    height: fit-content;
+}
+.content-card .pricing .price::before{
+    content: url('../icons/caret-left-fill.svg');
+    display: inline-block;
+    cursor: pointer;
+    transform: rotate(270deg);
+    transition: ease 0.5s;  
+    width: fit-content;
+}
+.content-card .pricing .price::after{
+    content: url('../icons/caret-right-fill.svg');
+    display: inline-block;
+    transform: rotate(270deg);  
+    width: fit-content;
+    padding-right: 0px;
+    transition: ease 0.5s;
+    margin-left: 3px;    
+    cursor: pointer;
+}
+
+/* 
+.content-card .pricing .amount {
+    border: 1px solid yellow;
+    max-width: 55%;
+} */
+.content-card .pricing h5 {
+    color: #535353;
+    margin-bottom: 5px;
+}
+.content-card .pricing .prices{
+    float: right;
+}
+.content-card .pricing .prices::before{
+    content: 'Rp. ';
+
+}
+.clearfix:after {
+    content:"";
+    display:block;
+    clear:both;
+}
+.box-social-media{
+    position: absolute;
+    margin: 7px;
+    bottom: 0;
+    right: 0;
+    border-radius: 10px;
+    width: fit-content;
+    padding: 0px 15px;
+}
+.box-social-media div {
+    display: inline-block;
+    margin-top:10px; 
+}
+
+.fas-fa-instagram{
+    background: url('../icons/instagram.svg');
+    width: 1em;
+    height: 1em;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    transition: ease-in 0.2s;   
+}
+.fas-fa-instagram:hover{
+filter: invert(22%) sepia(88%) saturate(7496%) hue-rotate(357deg) brightness(106%) contrast(112%);
+}
+.fas-fa-wa{
+    background: url('../icons/whatsapp.svg');
+    width: 1em;
+    height: 1em;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    transition: ease-in 0.2s;
+}
+.fas-fa-wa:hover{
+filter: invert(60%) sepia(27%) saturate(5693%) hue-rotate(82deg) brightness(116%) contrast(127%);
+}
+.fas-fa-facebook{
+    background: url('../icons/facebook.svg');
+    width: 1em;
+    height: 1em;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+.fas-fa-facebook:hover{
+filter: invert(8%) sepia(99%) saturate(7346%) hue-rotate(249deg) brightness(106%) contrast(144%);
+}
+.exit{
+    position: absolute;
+    right: 0;
+    overflow: hidden;
+    top: 0;
+    border-radius: 80%;
+    padding: 0px 9px;
+    color: white;
+    background-color:#535353 ;
+    z-index: 10;
+    transition: ease-in 0.5s;
+    font-size: 1.5rem;
+    cursor: pointer;
+    margin: 10px;
+}
+.exit:hover{
+    transform:rotate(180deg);
+    color: red;
 }
