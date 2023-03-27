@@ -26,12 +26,24 @@ var userSchema = new mongoose.Schema({
         type:Number,
         default:0
     },
+    sold:{
+        type:Number,
+        default:0
+    },
+    color:{
+        type:String,
+        required : true,
+    },
     category:{
-        type:mongoose.Schema.Types.ObjectId,
-        ref:"Category"
+        type:String,
+        ref:"Category",
+        required:true,
     }
 
+},
+{
+    timestamps:true
 });
 
-//Export the model
+//Export the    
 module.exports = mongoose.model('Product', userSchema);

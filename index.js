@@ -8,13 +8,16 @@ const {notFound,errorHandler} = require('./middlewares/errorHandler')
 const path = require('path');
 const authRoute = require('./routes/authRoute');
 const dbConnect = require('./config/dbConnect') 
+const productRoute = require('./routes/productRoute')
 const dotenv = require('dotenv').config();
 const cookieParser = require('cookie-parser');
 const PORT = process.env.PORT || 3000;
+const morgan = require('morgan')
 dbConnect();
 
 
 const app = express();
+app.use(morgan('dev'))
 app.use(cookieParser());
 app.use(bodyParser.json())
 app.set(bodyParser.urlencoded({extended:true}))
@@ -24,6 +27,7 @@ app.use(express.static(path.join(__dirname,'asset')))
 
 
 app.use('/api/user',authRoute)
+app.use('/api/product',productRoute)
 app.get('/',(req,res)=>{
     res.render('home',{
         title : "Halaman Home",
