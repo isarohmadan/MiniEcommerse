@@ -186,4 +186,19 @@ const deleteUserById = asyncHandler(async (req,res)=>{
         throw new Error(error)
     }
 })
-module.exports = {createUser , loginUserCtrl,handleRefreshToken, getAllUsers ,logout, getSingleUser ,updateUser ,blockUser,unblockUser,  deleteUserById}
+
+
+const updatePassword = asyncHandler(async (req,res)=>{
+    const {_id} = res.user;
+    const password = req.body.password;
+    validateMongoDbId(_id); 
+    const user = await userModels.findById({_id})
+    if(password){
+        user.password = password;
+        const updatedPassword = await user.save()
+        res.json(updatedPassword)
+    }else{
+        res.json(user)
+    }
+})
+module.exports = {createUser , loginUserCtrl,handleRefreshToken, getAllUsers ,logout, getSingleUser ,updateUser ,blockUser,unblockUser,  deleteUserById,updatePassword}

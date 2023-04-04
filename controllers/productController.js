@@ -16,17 +16,45 @@ const createProduct = asyncHandler(async(req,res)=>{
     }
 })
 const getAllProducts = asyncHandler(async(req,res)=>{
-    const urlParams = req.query
-    console.log(urlParams)
-    try {
-        const getAll = await product.find({
-            category : urlParams?.category,
-            brand : urlParams?.brand
-        })
-        res.json(getAll)
-    }catch(err){
-        throw new Error(err)
+    try {       
+        const queryObj = {...req.query}
+        const excludeFields = ["Page","Sort","Limit","Fields"]
+        excludeFields.forEach((ts)=> delete queryObj[ts])  
+        let querystr = JSON.stringify(queryObj)
+        querystr = querystr.replace(/\b(gte|gt|lte|lt)\b/g, (match)=> `$${match}`)
+        let query = product.find(JSON.parse(querystr))
+        // sorting
+        if(req.query.Sort){   
+            const sortBy = req.query.Sort.split(',').join(" ");
+            console.log(sortBy)
+            query = query.sort(sortBy)
+        }else{
+            query = query.sort("createdAt")
+        }
+        // limiting the fields
+        if(req.query.Fields){
+            const fields = req.query.Fields.split(',').join(" ");
+            query = query.select(fields)
+        }else{
+            query = query.select('-__v') 
+        }
+
+        // pagination
+
+        const page = req.query.Page;
+        const limit = req.query.Limit;
+        const skip = (page-1) * limit;
+        query = query.skip(skip).limit(limit)
+        if(req.query.Page){
+            const productCount = await product.countDocuments()    
+            if(skip >= productCount) throw new Error("page does not exist")
+        }
+        const result = await query
+        res.json(result)
+    } catch (error) {
+        throw new Error()
     }
+    
 })
 const getProduct = asyncHandler(async(req,res)=>{
     const {id} = req.params
