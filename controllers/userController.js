@@ -3,7 +3,8 @@ const {generateToken} = require('./../config/jwtToken')
 const asyncHandler = require('express-async-handler')
 const {validateMongoDbId} = require('./../utils/validateMongodbid')
 const {refreshToken} = require('./../config/refreshToken');
-const jwt = require('jsonwebtoken')
+const jwt = require('jsonwebtoken');
+const { sendEmail } = require('./mailerCtrl');
 const createUser = asyncHandler(async (req,res)=>{
     const email = req.body.email;
     const findUser = await userModels.findOne({email:email});
@@ -186,8 +187,6 @@ const deleteUserById = asyncHandler(async (req,res)=>{
         throw new Error(error)
     }
 })
-
-
 const updatePassword = asyncHandler(async (req,res)=>{
     const {_id} = res.user;
     const password = req.body.password;
@@ -201,4 +200,25 @@ const updatePassword = asyncHandler(async (req,res)=>{
         res.json(user)
     }
 })
-module.exports = {createUser , loginUserCtrl,handleRefreshToken, getAllUsers ,logout, getSingleUser ,updateUser ,blockUser,unblockUser,  deleteUserById,updatePassword}
+const sendEmailForgotPassword = asyncHandler(async(req,res)=>{
+    const {email} = req.body
+    const user = await userModels.findOne({email})
+    if(!user) throw new Error("couldn't find the email!")
+    try {
+        const token = await user.createPasswordResetToken() 
+        await user.save()
+        const resetUrl = `Hi Please follow this link to reset your password. this link is valid till 10 minutes from now. <a href='localhost:9000/api/user/forgot-password/${token}'>Click here!</a>`
+        const data = {
+            to: email,
+            text : "hi userr",
+            subject: "Forgot Password Link",
+            html : resetUrl
+        }
+        sendEmail(data).catch(console.error)
+        res.json(token)
+    } catch (error) {
+        throw new Error(error)
+    }
+
+})
+module.exports = {createUser , loginUserCtrl,handleRefreshToken, getAllUsers ,logout, getSingleUser ,updateUser ,blockUser,unblockUser,  deleteUserById,updatePassword,sendEmailForgotPassword}

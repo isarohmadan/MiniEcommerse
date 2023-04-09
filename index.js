@@ -7,6 +7,7 @@ const express = require('express');
 const {notFound,errorHandler} = require('./middlewares/errorHandler')
 const path = require('path');
 const authRoute = require('./routes/authRoute');
+const blogRoute = require('./routes/blogRoute')
 const dbConnect = require('./config/dbConnect') 
 const productRoute = require('./routes/productRoute')
 const dotenv = require('dotenv').config();
@@ -28,6 +29,7 @@ app.use(express.static(path.join(__dirname,'asset')))
 
 app.use('/api/user',authRoute)
 app.use('/api/product',productRoute)
+app.use('/api/blog',blogRoute)
 app.get('/',(req,res)=>{
     res.render('home',{
         title : "Halaman Home",
