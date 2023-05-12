@@ -15,24 +15,28 @@ var userSchema = new mongoose.Schema({
     like:[
         {
             type:mongoose.Schema.Types.ObjectId,
-            ref:"user"
+            ref:"User"
         }
     ],
     dislike:[
         {
             type:mongoose.Schema.Types.ObjectId,
-            ref:"user"
+            ref:"User"
         }
     ],
     isLiked : {
         type:Boolean,
         default : false
     },
-    isDisLiked : {
+    isDisliked : {
         type : Boolean,
         default : false,
     },
     numLikes:{
+        type:Number,
+        default:0
+    },
+    numViews:{
         type:Number,
         default:0
     },
@@ -51,7 +55,6 @@ var userSchema = new mongoose.Schema({
     },
 
 },
-
 {
     toJson:{ 
         virtuals : true
