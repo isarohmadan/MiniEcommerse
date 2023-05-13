@@ -9,6 +9,8 @@ const path = require('path');
 const authRoute = require('./routes/authRoute');
 const blogRoute = require('./routes/blogRoute')
 const dbConnect = require('./config/dbConnect') 
+const PcategoryRoute = require('./routes/productCategoryRoute')
+const BcategoryRoute = require('./routes/blogCategoryRoute.js')
 const productRoute = require('./routes/productRoute')
 const dotenv = require('dotenv').config();
 const cookieParser = require('cookie-parser');
@@ -27,9 +29,12 @@ app.set('views','view')
 app.use(express.static(path.join(__dirname,'asset')))
 
 
+app.use('/api/Pcategory',PcategoryRoute)
+app.use('/api/Bcategory',BcategoryRoute)
 app.use('/api/user',authRoute)
 app.use('/api/product',productRoute)
 app.use('/api/blog',blogRoute)
+
 // app.get('/',(req,res)=>{
 //     res.render('home',{
 //         title : "Halaman Home",
