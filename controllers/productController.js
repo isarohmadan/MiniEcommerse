@@ -1,9 +1,12 @@
 const product = require('./../models/productModels');
+const user = require('./../models/userModels.js');
 const asyncHandler = require('express-async-handler')
-const slugify = require('slugify')
+const slugify = require('slugify');
+const { validateMongoDbId } = require('../utils/validateMongodbid');
+const aggregateUser = require('./../utils/aggregateUser');
 
 
-
+//  creating product
 const createProduct = asyncHandler(async(req,res)=>{
     try {
         if(req.body.title){
@@ -15,6 +18,8 @@ const createProduct = asyncHandler(async(req,res)=>{
         throw new Error(error)
     }
 })
+
+// getting all the product with query params 
 const getAllProducts = asyncHandler(async(req,res)=>{
     try {       
         const queryObj = {...req.query}
@@ -56,11 +61,13 @@ const getAllProducts = asyncHandler(async(req,res)=>{
     }
     
 })
+
+// getting a single product using id
 const getProduct = asyncHandler(async(req,res)=>{
     const {id} = req.params
     try {
        const findIdProduct = await product.findById(id)
-
+        // validation product
         if(!findIdProduct) throw new Error("connot find the product")
         res.json(findIdProduct)
     } catch (error) {
@@ -68,6 +75,7 @@ const getProduct = asyncHandler(async(req,res)=>{
     }
 })
 
+// update method 
 const updateProduct = asyncHandler(async(req,res)=>{
     const {id} = req.params
     try {
@@ -94,10 +102,14 @@ const updateProduct = asyncHandler(async(req,res)=>{
     }
 })
 
+// method delete product
 const deleteProduct = asyncHandler(async(req,res)=>{
+    // req to parameter
     const {id} = req.params
     try {
+        // find the data
         const deleteProduct = await product.findByIdAndDelete(id)
+        // response validation
         if(!deleteProduct){
             res.json({
                 msg : "gagal hapus"
@@ -110,4 +122,32 @@ const deleteProduct = asyncHandler(async(req,res)=>{
         throw new Error()
     }
 })
-module.exports = {createProduct,getAllProducts,getProduct,updateProduct,deleteProduct}    
+
+// method adding some wishlist 
+const addWIshList = asyncHandler(async(req,res)=>{
+    const {prodId} = req.body;
+    // validateMongoDbId(prodId)
+
+    const getProd = await aggregateUser.getUsersCount(prodId)
+    // if(getProd){
+    //     console.log('test')
+    //     await user.findByIdAndUpdate(res.user._id,{
+    //         $pull : {wishlist:prodId}
+    //     },{
+    //         new : true
+    //     })
+    // }else{
+    //     await user.findByIdAndUpdate(res.user._id,{
+    //         $push : {wishlist:prodId}
+    //     },{
+    //         new : true
+    //      })
+    // }
+    
+    const theNewUser = await user.findById(res.user._id);
+    console.log(getProd)
+    res.json();
+})
+
+
+module.exports = {createProduct,getAllProducts,getProduct,updateProduct,deleteProduct, addWIshList}    
