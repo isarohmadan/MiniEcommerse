@@ -156,14 +156,65 @@ const addWIshList = asyncHandler(async(req,res)=>{
 
 
 // method add ratings 
-
 const ratingProduct = asyncHandler(async(req,res)=>{
+    const {idProd,stars,comment} = req.body
+    const userInput = res?.user._id
+
+    try { 
+        const findProduct = await product.findById(idProd);
+        const alreadyStared = findProduct?.ratings.find((userId) => userId.equals(userInput));
+        if(alreadyStared){
+            await product.findByIdAndUpdate(idProd,{
+                ratings : { $elemMatch : alreadyStared },
+                $set : {"ratings.$.star" : stars , "ratings.$.comment" : comment}},
+                {new : true})
+        }else{
+            await product.findByIdAndUpdate(idProd,{
+                $push : {ratings : {
+                    star : stars,
+                    comment : comment,
+                    postedBy : userInput
+                }}
+            },{new : true})
+        }
     
+        const getRateAvg = await product.findById(idProd)
+        let totalRate = getRateAvg.ratings.length
+        let sumTotalRate = getRateAvg.ratings.map((item)=> item.star)
+        .reduce((prev, curr)=> prev + curr , 0)
+        let actualRating = Math.round(sumTotalRate/totalRate);
+    
+        const finalRating = await product.findByIdAndUpdate(idProd,{
+            totalRating : actualRating
+        },{
+            new : true
+        })
+        res.json(finalRating)
+    } catch (error) {
+        throw new Error(error)
+    }
+})
+
+const removeRating = asyncHandler(async(req,res)=>{
+    const {id} = req.params;
+    try {
+        const data = product.findById(id)
+        const similarId = data?.ratings?.postedBy?.find((user)=>{
+            res.user.id.equals(user)
+        })
+        if(similarId){
+            console.log("sama")
+        }
+        // res.json(similarId)
+    } catch (error) {
+        
+    }
+
 })
 
 module.exports = {
     createProduct,getAllProducts,
     getProduct,updateProduct,
-    deleteProduct,addWIshList,
-    ratingProduct
+    deleteProduct,addWIshList,ratingProduct,
+    removeRating
 }    

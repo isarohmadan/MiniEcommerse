@@ -30,6 +30,14 @@ var userSchema = new mongoose.Schema({
         type:Number,
         default:0
     },
+    ratings:[{
+        star : Number,
+        comment : String,
+        postedBy : {type:mongoose.Schema.Types.ObjectId, reff:"User"}
+
+    }
+    ]
+    ,
     color:{
         type:String,
         required : true,
