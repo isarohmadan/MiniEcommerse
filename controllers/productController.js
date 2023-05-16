@@ -3,8 +3,8 @@ const user = require('./../models/userModels.js');
 const asyncHandler = require('express-async-handler')
 const slugify = require('slugify');
 const { validateMongoDbId } = require('../utils/validateMongodbid');
-const aggregateUser = require('./../utils/aggregateUser');
-
+const dbConnect = require('./../config/dbConnect')
+const { ObjectId } = require('mongodb');
 
 //  creating product
 const createProduct = asyncHandler(async(req,res)=>{
@@ -123,31 +123,47 @@ const deleteProduct = asyncHandler(async(req,res)=>{
     }
 })
 
+
+
 // method adding some wishlist 
 const addWIshList = asyncHandler(async(req,res)=>{
     const {prodId} = req.body;
-    // validateMongoDbId(prodId)
+    const users = res?.user;
 
-    const getProd = await aggregateUser.getUsersCount(prodId)
-    // if(getProd){
-    //     console.log('test')
-    //     await user.findByIdAndUpdate(res.user._id,{
-    //         $pull : {wishlist:prodId}
-    //     },{
-    //         new : true
-    //     })
-    // }else{
-    //     await user.findByIdAndUpdate(res.user._id,{
-    //         $push : {wishlist:prodId}
-    //     },{
-    //         new : true
-    //      })
-    // }
-    
-    const theNewUser = await user.findById(res.user._id);
-    console.log(getProd)
-    res.json();
+    // feth wishlist  di user
+    let isIdAviable = []
+    for(let i = 0; i < users.wishlist.length ; i++){
+        if(ObjectId.isValid(prodId) && users.wishlist[i].equals(prodId)){
+            isIdAviable.push(prodId)
+        }
+    }
+
+    // mengecek apakah ada produk di wishlis
+    if(isIdAviable.length === 0){
+        await user.findByIdAndUpdate(res?.user.id,{
+            $push : {wishlist : prodId}
+        },{new:true})
+    }else{
+        await user.findByIdAndUpdate(res?.user.id,{
+            $pull : {wishlist : prodId}
+        },{new:true})
+    }
+
+    // re find the data agar tidak penumpukan
+    const getUser = await user.findById(res?.user.id)
+    res.json(getUser)
 })
 
 
-module.exports = {createProduct,getAllProducts,getProduct,updateProduct,deleteProduct, addWIshList}    
+// method add ratings 
+
+const ratingProduct = asyncHandler(async(req,res)=>{
+    
+})
+
+module.exports = {
+    createProduct,getAllProducts,
+    getProduct,updateProduct,
+    deleteProduct,addWIshList,
+    ratingProduct
+}    
