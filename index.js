@@ -12,6 +12,7 @@ const dbConnect = require('./config/dbConnect')
 const PcategoryRoute = require('./routes/productCategoryRoute')
 const BcategoryRoute = require('./routes/blogCategoryRoute.js')
 const productRoute = require('./routes/productRoute')
+const brandRoute = require('./routes/brandRoute.js')
 const dotenv = require('dotenv').config();
 const cookieParser = require('cookie-parser');
 const PORT = process.env.PORT || 3000;
@@ -35,6 +36,7 @@ app.use('/api/Bcategory',BcategoryRoute)
 app.use('/api/user',authRoute)
 app.use('/api/product',productRoute)
 app.use('/api/blog',blogRoute)
+app.use('/api/brand',brandRoute)
 
 // app.get('/',(req,res)=>{
 //     res.render('home',{
