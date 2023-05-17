@@ -36,8 +36,11 @@ var userSchema = new mongoose.Schema({
         postedBy : {type:mongoose.Schema.Types.ObjectId, reff:"User"}
 
     }
-    ]
-    ,
+    ],
+    totalRatings:{
+        type : Number,
+        default : 0
+    },
     color:{
         type:String,
         required : true,

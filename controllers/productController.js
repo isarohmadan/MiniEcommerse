@@ -185,7 +185,7 @@ const ratingProduct = asyncHandler(async(req,res)=>{
         let actualRating = Math.round(sumTotalRate/totalRate);
     
         const finalRating = await product.findByIdAndUpdate(idProd,{
-            totalRating : actualRating
+            totalRatings : actualRating
         },{
             new : true
         })
@@ -198,18 +198,25 @@ const ratingProduct = asyncHandler(async(req,res)=>{
 const removeRating = asyncHandler(async(req,res)=>{
     const {id} = req.params;
     try {
-        const data = product.findById(id)
-        const similarId = data?.ratings?.postedBy?.find((user)=>{
-            res.user.id.equals(user)
-        })
-        if(similarId){
-            console.log("sama")
-        }
-        // res.json(similarId)
-    } catch (error) {
-        
-    }
+        const data = await product.findById(id)
+        const similarId = await data?.ratings.map(idUs => idUs.postedBy)
+        .filter(id => id.equals(res.user.id))
 
+        if(similarId.length > 0){
+            const hapus = await product.findByIdAndUpdate(id,{
+                $pull : {ratings:{postedBy:similarId[0]}}
+            },{
+                new : true
+            })
+            res.json(hapus)
+        }else{
+            res.json("Ratings tidak dapat ditemukan")
+        }
+
+    } catch (error) {
+        throw new Error(error)
+    }
+    
 })
 
 module.exports = {
