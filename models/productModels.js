@@ -45,6 +45,9 @@ var userSchema = new mongoose.Schema({
         type:String,
         required : true,
     },
+    images:[
+        
+    ],
     category:{
         type:String,
         ref:"Category",

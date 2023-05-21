@@ -45,10 +45,9 @@ var userSchema = new mongoose.Schema({
         ref:"Category",
         required:true,
     },
-    image : {
-        type :String,
-        default : "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Borobudur_Temple.jpg/320px-Borobudur_Temple.jpg"
-    },
+    images:[
+        
+    ],
     author : { 
         type : String,
         default : "Admin"
